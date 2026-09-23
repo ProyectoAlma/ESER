@@ -1,0 +1,16 @@
+# Configuración de Netlify para eser
+# Sitio estático de una sola página (index.html autónomo, sin build).
+
+[build]
+  publish = "."
+
+# Cache largo para los assets estáticos (favicon, imagen social)
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
