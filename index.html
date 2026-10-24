@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
+<script>document.documentElement.classList.add('anim');</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="eser · comunicación espiritual contemporánea. El pódcast de René Boiero: conciencia aplicada a la vida. Conversaciones profundas, Casa Alma, libros y comunidad.">
@@ -198,7 +199,7 @@
   /* eventos */
   .events .head{display:flex; justify-content:space-between; align-items:end; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem}
   .events .head h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
-  .ev-list{display:grid; grid-template-columns:repeat(2,1fr); gap:.8rem; max-width:980px}
+  .ev-list{display:grid; grid-template-columns:repeat(2,1fr); gap:.8rem; max-width:980px; margin-left:auto; margin-right:auto}
   .ev{display:grid; grid-template-columns:auto 1fr; gap:.45rem 1rem; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:.8rem 1.1rem; transition:transform .26s, box-shadow .26s, border-color .26s}
   .ev:hover{transform:translateY(-3px); border-color:rgba(70,211,255,.4); box-shadow:var(--shadow)}
   .ev .date{display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:52px; padding:.4rem .45rem; border-radius:11px; background:linear-gradient(160deg,var(--teal),#0a3546); color:#eafcff}
@@ -253,7 +254,7 @@
   .books-lead{margin-top:.85rem; max-width:46ch; color:var(--muted); font-size:1rem}
   .books .head h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
   .book-nav{display:flex; gap:.6rem}
-  .book-track{display:flex; gap:1.2rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:.3rem .3rem 1rem; scrollbar-width:none; scroll-behavior:smooth}
+  .book-track{display:flex; gap:1.2rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:.3rem .3rem 1rem; scrollbar-width:none; scroll-behavior:smooth; justify-content:safe center}
   .book-track::-webkit-scrollbar{display:none}
   .book{flex:0 0 auto; width:212px; scroll-snap-align:start}
   .book .cover{display:block; aspect-ratio:2/3; border-radius:14px; overflow:hidden; position:relative; border:1px solid var(--line); box-shadow:var(--shadow); transition:transform .32s, box-shadow .32s; background:#0a1f2b}
@@ -384,10 +385,50 @@
   @media(prefers-reduced-motion:reduce){ .agencia-sky .plane,.agencia-sky .cloud{animation:none} }
 
   /* --- Tarjeta agencia (pieza integrada SVG) --- */
-  .agencia{display:block; margin-top:1.6rem; border-radius:18px; overflow:hidden; text-decoration:none; border:1px solid rgba(120,160,210,.25); box-shadow:0 18px 44px -24px rgba(10,20,45,.6); transition:transform .28s, box-shadow .28s; max-width:760px}
+  .agencia{display:block; margin:1.6rem auto 0; border-radius:18px; overflow:hidden; text-decoration:none; border:1px solid rgba(120,160,210,.25); box-shadow:0 18px 44px -24px rgba(10,20,45,.6); transition:transform .28s, box-shadow .28s; max-width:760px}
   .agencia:hover{transform:translateY(-3px); box-shadow:0 26px 54px -24px rgba(10,20,45,.75)}
   .agencia-svg{display:block; width:100%; height:auto}
 
+  /* ===== centrado de secciones ===== */
+  .episodes .head,.events .head,.books .head{ flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .man-head{ text-align:center; }
+  #universo .shead{ text-align:center; margin-left:auto; margin-right:auto; }
+  .lead{ text-align:center; margin-left:auto; margin-right:auto; }
+  .reels-lead,.books-lead{ text-align:center; margin-left:auto; margin-right:auto; }
+  .book-nav{ justify-content:center; }
+  .ev-note{ text-align:center; }
+  .intro-grid{ max-width:74ch; margin-left:auto; margin-right:auto; text-align:center; }
+  .mission{ border-left:none; padding-left:0; border-top:2px solid var(--amber); padding-top:1rem; display:inline-block; text-align:center; max-width:60ch; margin-top:1.4rem; }
+  #que-es .mission{ border-top-color:#46d3ff; }
+
+  /* ===== animacion del logo del hero (aparicion suave de eser) ===== */
+  .logo-anim{position:relative; display:inline-block; line-height:0}
+  @media (prefers-reduced-motion: no-preference){
+    .anim .logo-anim .logo-reveal{opacity:0; transform:scale(.985); clip-path:inset(0 100% 0 0); -webkit-clip-path:inset(0 100% 0 0); animation:logoreveal 1.9s cubic-bezier(.42,0,.58,1) .35s forwards}
+  }
+  @keyframes logoreveal{0%{opacity:0; transform:scale(.985); clip-path:inset(0 100% 0 0); -webkit-clip-path:inset(0 100% 0 0)} 20%{opacity:1} 100%{opacity:1; transform:scale(1); clip-path:inset(0 0 0 0); -webkit-clip-path:inset(0 0 0 0)}}
+
+  /* ===== capa de movimiento: aparicion al hacer scroll + parallax (estilo premium) ===== */
+  @media (prefers-reduced-motion: no-preference){
+    .anim .episodes .head,.anim .ep,.anim .yt-all,
+    .anim .intro-grid,
+    .anim .reels .man-head,.anim .reel-card,.anim .reels .sig,
+    .anim #universo .shead,.anim .world,
+    .anim .books .head,.anim .book,
+    .anim .events .head,.anim .ev,.anim .agencia,.anim .ev-note,
+    .anim .follow .box{
+      opacity:0; translate:0 32px;
+      transition:opacity .9s cubic-bezier(.16,.8,.3,1), translate .9s cubic-bezier(.16,.8,.3,1);
+      will-change:opacity, translate;
+    }
+    .anim .rin{opacity:1!important; translate:0 0!important}
+    .anim .hero .voiceorb{will-change:translate, opacity}
+    .anim .hero .tag{animation:heroin .9s cubic-bezier(.16,.8,.3,1) both .05s}
+    .anim .hero .sub{animation:heroin .9s cubic-bezier(.16,.8,.3,1) both .18s}
+    .anim .hero .cta-row{animation:heroin .9s cubic-bezier(.16,.8,.3,1) both .30s}
+    .anim .hero .cta-plat{animation:heroin .9s cubic-bezier(.16,.8,.3,1) both .42s}
+  }
+  @keyframes heroin{from{opacity:0; translate:0 24px} to{opacity:1; translate:0 0}}
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -419,7 +460,9 @@
       <div class="eqring" id="eqring"></div>
       <a class="playbtn" id="hero-play" href="#episodios" aria-label="Escuchar el podcast"><span class="emark" aria-hidden="true"></span></a>
     </div>
-    <span class="logo cream" role="img" aria-label="eser"></span>
+    <div class="logo-anim" role="img" aria-label="eser">
+      <span class="logo cream logo-reveal"></span>
+    </div>
     <div class="tag">Conciencia aplicada a la vida.</div>
     <p class="sub">Comunicación espiritual contemporánea. Conversaciones profundas que bajan la espiritualidad a la vida real, y un universo de lugares, palabra y comunidad alrededor.</p>
     <div class="cta-row">
@@ -587,7 +630,6 @@
   </g>
 </svg>
 </a>
-    <p class="ev-note">✎ Los eventos se editan en el bloque EVENTS del código: agregá una fila con fecha, lugar y enlace para publicar uno nuevo.</p>
   </div>
 </section>
 
@@ -823,5 +865,46 @@
 })();
 </script>
 <script async src="https://www.instagram.com/embed.js"></script>
+<script>
+/* capa de movimiento: reveal on scroll + parallax hero (inline, sin dependencias) */
+(function(){
+  var root=document.documentElement;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce||!('IntersectionObserver' in window)){ root.classList.remove('anim'); return; }
+  var sels=['.episodes .head','.ep','.yt-all','.intro-grid',
+    '.reels .man-head','.reel-card','.reels .sig',
+    '#universo .shead','.world','.books .head','.book',
+    '.events .head','.ev','.agencia','.ev-note','.follow .box'];
+  var items=[];
+  sels.forEach(function(s){ Array.prototype.forEach.call(document.querySelectorAll(s),function(el){ if(items.indexOf(el)<0) items.push(el); }); });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el=en.target, p=el.parentElement;
+      var sibs=p?Array.prototype.filter.call(p.children,function(c){return items.indexOf(c)>=0;}):[el];
+      var idx=sibs.indexOf(el); if(idx<0) idx=0;
+      el.style.transitionDelay=(Math.min(idx,6)*80)+'ms';
+      el.classList.add('rin');
+      io.unobserve(el);
+    });
+  },{threshold:0.12, rootMargin:'0px 0px -7% 0px'});
+  items.forEach(function(el){ io.observe(el); });
+
+  /* parallax sutil del orbe del hero */
+  var orb=document.querySelector('.hero .voiceorb');
+  if(orb){
+    var ticking=false;
+    var onScroll=function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){
+        var y=window.pageYOffset||0;
+        if(y<900){ orb.style.translate='0 '+(y*0.14).toFixed(1)+'px'; orb.style.opacity=(Math.max(0.4,1-y/1000)).toFixed(3); }
+        ticking=false;
+      });
+    };
+    window.addEventListener('scroll',onScroll,{passive:true});
+  }
+})();
+</script>
 </body>
 </html>
