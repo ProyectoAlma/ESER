@@ -198,8 +198,8 @@
   /* eventos */
   .events .head{display:flex; justify-content:space-between; align-items:end; gap:1rem; flex-wrap:wrap; margin-bottom:1.5rem}
   .events .head h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
-  .ev-list{display:flex; flex-direction:column; gap:.65rem; max-width:860px}
-  .ev{display:grid; grid-template-columns:auto 1fr auto; gap:1rem; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:.8rem 1.1rem; transition:transform .26s, box-shadow .26s, border-color .26s}
+  .ev-list{display:grid; grid-template-columns:repeat(2,1fr); gap:.8rem; max-width:980px}
+  .ev{display:grid; grid-template-columns:auto 1fr; gap:.45rem 1rem; align-items:center; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:.8rem 1.1rem; transition:transform .26s, box-shadow .26s, border-color .26s}
   .ev:hover{transform:translateY(-3px); border-color:rgba(70,211,255,.4); box-shadow:var(--shadow)}
   .ev .date{display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:52px; padding:.4rem .45rem; border-radius:11px; background:linear-gradient(160deg,var(--teal),#0a3546); color:#eafcff}
   .ev .date .d{font-family:"Unbounded",sans-serif; font-size:1.1rem; line-height:1}
@@ -207,8 +207,8 @@
   .ev .info h3{font-size:1rem; margin-bottom:.12rem}
   .ev .info .where{font-size:.76rem; color:var(--ac); font-weight:700}
   .ev .info p{color:var(--muted); font-size:.83rem; margin-top:.2rem}
-  .ev .go{white-space:nowrap}
-  @media(max-width:680px){ .ev{grid-template-columns:auto 1fr} .ev .go{grid-column:1/-1; justify-self:start} }
+  .ev .go{white-space:nowrap; grid-column:1/-1; justify-self:end}
+  @media(max-width:680px){ .ev-list{grid-template-columns:1fr} .ev .go{justify-self:start} }
   .ev-note{margin-top:1rem; font-size:.82rem; color:var(--muted); font-style:italic}
 
   /* conectar */
